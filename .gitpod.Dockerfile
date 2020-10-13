@@ -20,10 +20,10 @@ RUN cd /home/gitpod && \
     git clone https://github.com/flutter/flutter.git -b stable --depth 1
 
 RUN cd /home/gitpod && \
-    wget -qO android_studio.zip \
+    wget -qO android_studio.tar.gz \
     https://dl.google.com/dl/android/studio/ide-zips/4.1.0.19/android-studio-ide-201.6858069-linux.tar.gz && \
-    unzip android_studio.zip && \
-    rm -f android_studio.zip
+    tar -xzf android_studio.tar.gz && \
+    rm -f android_studio.tar.gz
 
 ARG ANDROID_SDK_VERSION=6514223
 RUN mkdir -p /home/gitpod/android-sdk && \
