@@ -1,8 +1,8 @@
 FROM gitpod/workspace-full:latest
 
 ENV ANDROID_HOME=/home/gitpod/android-sdk \
-    ANDROID_CMDLINE_TOOLS=$ANDROID_HOME/cmdline_tools \
     FLUTTER_HOME=/home/gitpod/flutter
+ENV ANDROID_CMDLINE_TOOLS=$ANDROID_HOME/cmdline_tools
 
 USER root
 
