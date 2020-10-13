@@ -43,4 +43,4 @@ RUN mkdir -p $ANDROID_CMDLINE_TOOLS && \
     rm -f commandlinetools.zip    
 
 # pre-download flutter development binaries
-RUN flutter precache
+RUN $FLUTTER_HOME/bin/flutter precache
