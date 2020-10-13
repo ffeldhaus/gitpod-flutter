@@ -25,8 +25,6 @@ RUN cd /home/gitpod && \
     tar -xzf android_studio.tar.gz && \
     rm -f android_studio.tar.gz
 
-https://dl.google.com/android/repository/commandlinetools-win-6609375_latest.zip
-
 ARG ANDROID_SDK_VERSION=6609375
 RUN mkdir -p /home/gitpod/android-sdk && \
     cd /home/gitpod/android-sdk && \
