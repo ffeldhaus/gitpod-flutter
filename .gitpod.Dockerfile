@@ -25,10 +25,12 @@ RUN cd /home/gitpod && \
     tar -xzf android_studio.tar.gz && \
     rm -f android_studio.tar.gz
 
-ARG ANDROID_SDK_VERSION=6514223
+https://dl.google.com/android/repository/commandlinetools-win-6609375_latest.zip
+
+ARG ANDROID_SDK_VERSION=6609375
 RUN mkdir -p /home/gitpod/android-sdk && \
     cd /home/gitpod/android-sdk && \
-    wget -qO sdk-tools.zip \
-    https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_VERSION}.zip && \
-    unzip sdk-tools.zip && \
-    rm -f sdk-tools.zip
+    wget -qO commandlinetools.zip \
+    https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
+    unzip commandlinetools.zip && \
+    rm -f commandlinetools.zip    
