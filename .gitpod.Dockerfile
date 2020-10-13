@@ -1,6 +1,7 @@
 FROM gitpod/workspace-full:latest
 
 ENV ANDROID_HOME=/home/gitpod/android-sdk \
+    ANDROID_CMDLINE_TOOLS=$ANDROID_HOME/cmdline_tools \
     FLUTTER_HOME=/home/gitpod/flutter
 
 USER root
@@ -14,6 +15,9 @@ RUN curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - &
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*;
 
+# ensure that JDK is set to 8 until Flutter supports more recent JDK versions
+RUN update-java-alternatives --set /usr/lib/jvm/java-1.8.0-openjdk-amd64
+
 USER gitpod
 
 RUN cd /home/gitpod && \
@@ -26,8 +30,8 @@ RUN cd /home/gitpod && \
     rm -f android_studio.tar.gz
 
 ARG ANDROID_SDK_VERSION=6609375
-RUN mkdir -p /home/gitpod/android-sdk && \
-    cd /home/gitpod/android-sdk && \
+RUN mkdir -p $ANDROID_CMDLINE_TOOLS && \
+    cd $ANDROID_CMDLINE_TOOLS && \
     wget -qO commandlinetools.zip \
     https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
     unzip commandlinetools.zip && \
