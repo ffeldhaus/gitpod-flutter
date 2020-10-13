@@ -17,7 +17,8 @@ RUN curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - &
     rm -rf /var/lib/apt/lists/*;
 
 # ensure that JDK is set to 8 until Flutter supports more recent JDK versions
-RUN sdk install java 8.0.265.j9-adpt
+RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh \
+             && sdk install java 8.0.265.j9-adpt"
 
 USER gitpod
 
