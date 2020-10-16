@@ -10,7 +10,7 @@ USER root
 RUN curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list && \
     apt-get update && \
-    apt-get -y install build-essential dart libkrb5-dev gcc make gradle android-tools-adb android-tools-fastboot && \
+    apt-get -y install build-essential dart libkrb5-dev gcc make gradle android-tools-adb android-tools-fastboot libpulse0 && \
     apt-get clean && \
     apt-get -y autoremove && \
     apt-get -y clean && \
@@ -46,9 +46,9 @@ RUN mkdir -p $ANDROID_CMDLINE_TOOLS && \
 RUN $FLUTTER_HOME/bin/flutter precache
 
 # add flutter web support
-RUN flutter channel beta && \
-    flutter upgrade && \
-    flutter config --enable-web
+RUN $FLUTTER_HOME/bin/flutter channel beta && \
+    $FLUTTER_HOME/bin/flutter upgrade && \
+    $FLUTTER_HOME/bin/flutter config --enable-web
 
 # install AAndroid SDK platform tools for specific android version(s) and accept licenses
 RUN yes | $ANDROID_CMDLINE_TOOLS/tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.0" && \
