@@ -24,7 +24,7 @@ USER gitpod
 
 # install flutter
 RUN cd /home/gitpod && \
-    git clone https://github.com/flutter/flutter.git -b stable --depth 1
+    git clone https://github.com/flutter/flutter.git -b stable --depth 1 --no-single-branch
 
 # install android studio
 RUN cd /home/gitpod && \
@@ -44,3 +44,12 @@ RUN mkdir -p $ANDROID_CMDLINE_TOOLS && \
 
 # pre-download flutter development binaries
 RUN $FLUTTER_HOME/bin/flutter precache
+
+# add flutter web support
+RUN flutter channel beta && \
+    flutter upgrade && \
+    flutter config --enable-web
+
+# install AAndroid SDK platform tools for specific android version(s) and accept licenses
+RUN yes | $ANDROID_CMDLINE_TOOLS/tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.0" && \
+    yes | $ANDROID_CMDLINE_TOOLS/tools/bin/sdkmanager --licenses
